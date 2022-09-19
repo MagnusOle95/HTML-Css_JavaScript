@@ -1,0 +1,18 @@
+body{
+    color: blue;
+}
+
+table{
+    border-collapse: collapse;
+    height: 100px;
+}
+
+td{
+    border: 1px solid blue;
+}
+
+img{
+    width: 70px;
+}
+
+

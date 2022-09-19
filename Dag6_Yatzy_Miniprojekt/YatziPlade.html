@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head> 
+    <title> Yatzi miniprojekt </title>
+    <link rel="stylesheet" href="Yatzi.css">
+    <script src="yatzi.js" defer></script>
+
+</head>
+
+
+<body>
+
+    <div id = "ContainerAll"> 
+
+        <audio controls autoplay>
+            <source src="Music8Bit.mp3"  type="audio/mp3" autostart="true"> 
+        </audio>
+        
+        <div id = "UpperContainer">
+            <ul>
+            <input value="0" class = "YatziDice" type="number" id="d1" readonly> 
+            <input value="0" class = "YatziDice" type="number" id="d2" readonly>
+            <input value="0" class = "YatziDice" type="number" id="d3" readonly>
+            <input value="0" class = "YatziDice" type="number" id="d4" readonly>
+            <input value="0" class = "YatziDice" type="number" id="d5" readonly> <br>
+            <label class="switch" id = "C1"> <input type = "checkbox"> </label>
+            <label class="switch" id = "C2"> <input type = "checkbox"> </label>
+            <label class="switch" id = "C3"> <input type = "checkbox"> </label>
+            <label class="switch" id = "C4"> <input type = "checkbox"> </label>
+            <label class="switch" id = "C5"> <input type = "checkbox"> </label> <br>
+            <button id = "buttonRoll">Roll!</button>
+            <label id = "TurnLabel"> Turn: 0 </label>
+            </ul>
+        
+        </div>
+
+        <div class= "LowerContainer">
+
+            <table> 
+
+        <tr>
+            <td><label>1-s</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "S1" readonly></td>
+        </tr>
+
+        <tr>
+            <td><label>2-s</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "S2" readonly></td>
+        </tr>
+
+        <tr>
+            <td><label>3-s</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "S3" readonly></td>
+        </tr>
+
+        <tr>
+            <td><label>4-s</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "S4" readonly></td>
+        </tr>
+
+        <tr>
+            <td><label>5-s</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "S5" readonly></td>
+        </tr>
+
+        <tr>
+            <td><label>6-s</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "S6" readonly></td>
+        </tr>
+
+        
+        <tr>  
+            <td><label class = "Sum">Sum</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "Sum" readonly></td>
+        </tr>
+
+        <tr>
+            <td><label class = "bonus">Bonus:</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "Bonus" readonly></td>
+        </tr> 
+        
+
+        <tr>
+            <td><label>One Pair</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "Onepair" readonly></td>
+        </tr>
+
+        <tr>
+            <td><label>Two pair</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "Twopair" readonly></td>
+        </tr>
+
+        <tr>
+            <td><label>Three same</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "Threesame" readonly></td>
+        </tr>
+
+        <tr>
+            <td><label>Four same</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "Foursame" readonly></td>
+        </tr>
+
+        <tr>
+            <td><label>Full house</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "Fullhouse" readonly></td>
+        </tr>
+        
+        <tr>
+            <td><label>Small straigt</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "Smallstraigt" readonly></td>
+        </tr>
+
+        <tr>
+            <td><label>Large straigt</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "Largestraigt" readonly></td>
+        </tr>
+
+        <tr>
+            <td><label>Chance</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "Chance" readonly></td>
+        </tr>
+
+        <tr>
+            <td><label class = "AfstandTilFelt">Yatzi</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "Yatzi" readonly></td>
+        </tr> 
+
+        <tr>
+            <td><label class = specialFelt>Total</label></td>
+            <td><input class = "Yatziudfald" type = "number" id = "Total" readonly></td>
+        </tr>
+
+        </table>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
