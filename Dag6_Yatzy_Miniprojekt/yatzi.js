@@ -35,7 +35,7 @@ function disabledDicesButtonAndCheckBoxes(dices,switches,buttonRoll){
 
 //test 1232
 //Dette er en ny test 123
-
+//Super så ved man det virker
 
 
 
