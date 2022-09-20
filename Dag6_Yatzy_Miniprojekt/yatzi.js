@@ -1,6 +1,8 @@
 
 let throwCount = 0;
 let openDices = new Array(5).fill(true);
+let valueDice = new Array(5).fill(0);
+
 
 
 // funktion to roll dices. 
@@ -24,7 +26,8 @@ function rollDices(){
     if(throwCount <= 2){
         for (let dice of dices){
             if(openDices[i]){
-                dice.value = Math.floor(Math.random() * 6) + 1; 
+                valueDice[i] = Math.floor(Math.random() * 6) + 1; 
+                dice.value = valueDice[i];
             }
             i++;  
         }
@@ -34,6 +37,7 @@ function rollDices(){
     if(throwCount >= 3){
         disabledDicesButtonAndCheckBoxes();
     }
+    visRasultaterS();
 }
 
 function disabledDicesButtonAndCheckBoxes(){
@@ -148,6 +152,26 @@ function disableDiceD5(){
     c5.innerHTML = "<input type = checkbox disabled>"
     openDices[4] = false;
 }
+
+
+function visRasultaterS(){
+    for(let i = 1; i <=6;i++){
+        let S = document.querySelector("#S" + i);
+        S.value = SumS(i);   
+    }
+}
+
+function SumS(S){
+    amount = 0;
+    for(let value of valueDice ){
+        if(value == S){
+            amount++;
+        }
+    }
+    return amount * S;
+}
+
+
 
 
 
