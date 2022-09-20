@@ -42,6 +42,7 @@ function rollDices(){
     visRasultaterS();
     onePair();
     twoPairs();
+    threeSamePoints();
 }
 
 function disabledDicesButtonAndCheckBoxes(){
@@ -223,6 +224,23 @@ function twoPairs(){
     }
     twoPairField.value = points;
 }
+
+function threeSamePoints(){
+    let listeMedUdfald = calcCountsOFUdfald();
+    let threeSameField = document.querySelector("#Threesame");
+    let points = 0;
+
+    for (let i = 1; i <= 6;i++){
+        if (listeMedUdfald[i] >= 3){
+            points = i * 3;
+        }
+    }
+
+    threeSameField.value = points;
+}
+
+
+
 
 
 

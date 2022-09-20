@@ -1,0 +1,83 @@
+body {
+  background: linear-gradient(#ffe4b2, #ffcc5a);
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dice_roller,
+.results {
+  border: 1px solid grey;
+}
+
+.dice_roller {
+  padding: 40px;
+}
+
+.roller {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.roller_button {
+  padding: 20px 40px;
+}
+
+.results {
+  margin-top: 20px;
+  padding: 10px;
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 5px;
+}
+
+.die {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.dice {
+  height: 80px;
+  width: 80px;
+  background-color: brown;
+}
+
+.score_label {
+  display: flex;
+  justify-content: space-between;
+  grid-column: 1/3;
+}
+
+.singles_score,
+.total_score {
+  grid-column: 3/5;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+}
+
+.sums {
+  grid-column: 1;
+}
+
+.bonus,
+.total {
+  grid-column: 2;
+}
+
+.score_label input {
+  width: 40px;
+}
+
+.singles,
+.combos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
