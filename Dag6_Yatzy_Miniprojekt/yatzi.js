@@ -41,6 +41,7 @@ function rollDices(){
     }
     visRasultaterS();
     onePair();
+    twoPairs();
 }
 
 function disabledDicesButtonAndCheckBoxes(){
@@ -193,7 +194,7 @@ function calcCountsOFUdfald() {
 }
 
 function onePair(){
-    let onePairField = document.querySelector("#Onepair")
+    let onePairField = document.querySelector("#Onepair");
     let points = 0;
     let listeMedUdfald = calcCountsOFUdfald();
     for (let i = 1; i <= 6;i++){
@@ -204,6 +205,24 @@ function onePair(){
     onePairField.value = points;
 }
 
+function twoPairs(){
+    let twoPairField = document.querySelector("#Twopair");
+    let listeMedUdfald = calcCountsOFUdfald();
+    let pairCount = 0;
+    let points = 0;
+
+    for (let i = 1; i <= 6;i++){
+        if(listeMedUdfald[i] >= 2){
+            points += i * 2;
+            pairCount++;
+            }
+        }
+
+    if (pairCount != 2){
+        points = 0;
+    }
+    twoPairField.value = points;
+}
 
 
 
