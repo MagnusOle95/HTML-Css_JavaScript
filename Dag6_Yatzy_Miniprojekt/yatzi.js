@@ -28,7 +28,7 @@ function rollDices(){
     if(throwCount <= 2){
         for (let dice of dices){
             if(openDices[i]){
-                valueDice[i] = Math.floor(Math.random() * 6) + 1; 
+                valueDice[i] = Math.floor(Math.random() * 6) + 1;
                 dice.value = valueDice[i];
             }
             i++;  
@@ -43,6 +43,12 @@ function rollDices(){
     onePair();
     twoPairs();
     threeSamePoints();
+    fourSamePoints();
+    fullHousePoints()
+    smallStraight();
+    largeStraight();
+    chance();
+    yatzi();
 }
 
 function disabledDicesButtonAndCheckBoxes(){
@@ -235,9 +241,105 @@ function threeSamePoints(){
             points = i * 3;
         }
     }
-
     threeSameField.value = points;
 }
+
+function fourSamePoints(){
+    let listeMedUdfald = calcCountsOFUdfald();
+    let fourSameField = document.querySelector("#Foursame");
+    let points = 0;
+
+    for (let i = 1; i <= 6;i++){
+        if (listeMedUdfald[i] >= 4){
+            points = i * 4;
+        }
+    }
+    fourSameField.value = points;
+}
+
+function fullHousePoints(){
+    let listeMedUdfald = calcCountsOFUdfald();
+    let fullHouseField = document.querySelector("#Fullhouse");
+    let points = 0
+    let threepairPoints = 0;
+    let twoPairPoints = 0;
+
+    for(let i = 1; i <= 6; i++){
+        if (listeMedUdfald[i] == 3){
+            threepairPoints = i * 3;
+        }
+        if (listeMedUdfald[i] == 2){
+            twoPairPoints = i * 2;
+        }
+    }
+
+    if (threepairPoints > 0 && twoPairPoints > 0){
+        points = threepairPoints + twoPairPoints;
+    }
+    fullHouseField.value = points;
+}
+
+
+function smallStraight(){
+    let listeMedUdfald = calcCountsOFUdfald();
+    let smallStraightField = document.querySelector("#Smallstraigt");
+    let points = 0
+
+    for (let i = 1; i <= 5;i++){
+        if (listeMedUdfald[i] == 1){
+            points += i;
+        }
+    }
+    if (points != 15){
+        points = 0;
+    }
+    smallStraightField.value = points;
+}
+
+function largeStraight(){
+    let listeMedUdfald = calcCountsOFUdfald();
+    let largeStraightField = document.querySelector("#Largestraigt");
+    let points = 0
+
+    for (let i = 2; i <= 6;i++){
+        if (listeMedUdfald[i] == 1){
+            points += i;
+        }
+    }
+    if (points != 20){
+        points = 0;
+    }
+    largeStraightField.value = points;
+}
+
+function chance (){
+    let chanceField = document.querySelector("#Chance");
+    let points = 0
+    for(let value of valueDice){
+        points += value;
+    }
+    chanceField.value = points;
+}
+
+function yatzi(){
+    let listeMedUdfald = calcCountsOFUdfald();
+    let yatziField = document.querySelector("#Yatzi");
+    let points = 0;
+
+    for (let i = 1; i <= 6; i++){
+        if (listeMedUdfald[i] == 5){
+            points = 50;
+        }
+    }
+    yatziField.value = points;
+}
+
+
+
+
+
+
+
 
 
 
