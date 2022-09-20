@@ -85,6 +85,7 @@ function disableSFields(S){
     ResetDices();
     openSFields[S-1] = false;
     sumToSumField();
+    tjekForEndGame();
 }
 
 //Funktion, hvis der klikkes på alle specialfelter. 
@@ -95,6 +96,7 @@ function disableSpecialFields(id){
     openSpecialFields[location] = false;
     sumToSumField();
     ResetDices();
+    tjekForEndGame();
 }
 
 //ved clik på en af S felterne, resettes terninger felter samt lock, roll knap og turn label. 
@@ -197,8 +199,9 @@ function sumToSumField(){
         }
     }
     sumfield.value = sum;
-    bonusField.value = CheckIfYouGotBonus(sum);
-    total(sum);
+    let bonusValue = CheckIfYouGotBonus(sum);
+    bonusField.value = bonusValue;
+    total(sum + bonusValue);
 }
 
 function CheckIfYouGotBonus(sum){
@@ -398,6 +401,14 @@ function yatzi(){
     }
     valuespecialfields[8] = points;
     yatziField.value = points;
+    }
+}
+
+function tjekForEndGame(){
+if(openSFields.includes(true) || openSpecialFields.includes(true)){
+    //Do nothing.
+    }else{
+        console.log("Spillet er slut");
     }
 }
 
