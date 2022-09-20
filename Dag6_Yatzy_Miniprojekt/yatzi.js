@@ -408,7 +408,8 @@ function tjekForEndGame(){
 if(openSFields.includes(true) || openSpecialFields.includes(true)){
     //Do nothing.
     }else{
-        console.log("Spillet er slut");
+        console.log("Spillet er slut - mangler reset");
+        
     }
 }
 
