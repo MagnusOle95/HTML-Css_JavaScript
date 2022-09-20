@@ -40,6 +40,7 @@ function rollDices(){
         disabledDicesButtonAndCheckBoxes();
     }
     visRasultaterS();
+    onePair();
 }
 
 function disabledDicesButtonAndCheckBoxes(){
@@ -59,7 +60,6 @@ function disabledDicesButtonAndCheckBoxes(){
 //Funktion hvis der klikkes på alle s. 
 function disableSFields(S){
     let sField = document.querySelector("#S"+S);
-    let sumField = document.querySelector("#sum");
     sField.outerHTML = "<input class = Yatziudfald value = "+ sField.value +" type = number id = S"+S+" readonly disabled>"
     ResetDices();
     openSFields[S-1] = false;
@@ -134,7 +134,7 @@ function visRasultaterS(){
     for(let i = 1; i <=6;i++){
         if(openSFields[i-1] == true){
             let S = document.querySelector("#S" + i);
-            valueSFields[i-1] = SumS(i) + 10;
+            valueSFields[i-1] = SumS(i);
             S.value = valueSFields[i-1];
         }
     }
@@ -157,6 +157,7 @@ function sumToSumField(){
     let sum = 0;
     let sumfield = document.querySelector("#Sum");
     let bonusField = document.querySelector("#Bonus");
+    let totalField = document.querySelector("#Total");
     for(let i = 0; i < valueSFields.length; i++){
         if(!openSFields[i]){
             sum += valueSFields[i];  
@@ -164,6 +165,7 @@ function sumToSumField(){
     }
     sumfield.value = sum;
     bonusField.value = CheckIfYouGotBonus(sum);
+    totalField.value = total(sum);
 }
 
 function CheckIfYouGotBonus(sum){
@@ -173,6 +175,44 @@ function CheckIfYouGotBonus(sum){
     }
     return bonus;
 }
+
+function total(sum){
+    return sum;
+}
+
+function calcCountsOFUdfald() {
+    let list = new Array(7).fill(0);
+    for (let i = 0; i < list.length; i++){
+        for (let j = 1; j <= 6;j++){
+            if (valueDice[i] == j){
+                list[j]++;
+            }
+        }
+    }
+    return list;
+}
+
+function onePair(){
+    let onePairField = document.querySelector("#Onepair")
+    let points = 0;
+    let listeMedUdfald = calcCountsOFUdfald();
+    for (let i = 1; i <= 6;i++){
+        if(listeMedUdfald[i] >= 2){
+            points = i * 2;
+        }
+    }
+    onePairField.value = points;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
