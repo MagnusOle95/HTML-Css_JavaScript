@@ -4,6 +4,8 @@ let openDices = new Array(5).fill(true);
 let valueDice = new Array(5).fill(0);
 let openSFields = new Array(6).fill(true);
 let valueSFields = new Array(6).fill(0);
+let openSpecialFields = new Array(9).fill(true);
+let valueSpecialFields = new Array(9).fill(0);
 
 
 
@@ -20,6 +22,8 @@ document.querySelector("#C2").onclick = disableDiceD2;
 document.querySelector("#C3").onclick = disableDiceD3;
 document.querySelector("#C4").onclick = disableDiceD4;
 document.querySelector("#C5").onclick = disableDiceD5;
+
+
 
 function rollDices(){
     let i = 0;
@@ -72,6 +76,11 @@ function disableSFields(S){
     ResetDices();
     openSFields[S-1] = false;
     sumToSumField();
+}
+
+//Funktion, hvis der klikkes på alle specialfelter. 
+function disableSpecialFields(id){
+    let specialField = document.querySelector("#" + id);
 }
 
 //ved clik på en af S felterne, resettes terninger felter samt lock, roll knap og turn label. 
