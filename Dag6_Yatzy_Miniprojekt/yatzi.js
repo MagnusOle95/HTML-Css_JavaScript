@@ -2,17 +2,19 @@
 let throwCount = 0;
 let openDices = new Array(5).fill(true);
 let valueDice = new Array(5).fill(0);
+let openSFields = new Array(6).fill(true);
+let valueSFields = new Array(6).fill(0);
 
 
 
 // funktion to roll dices. 
 document.querySelector('#buttonRoll').onclick=rollDices;
-document.querySelector("#S1").onclick = disableS1;
-document.querySelector("#S2").onclick = disableS2;
-document.querySelector("#S3").onclick = disableS3;
-document.querySelector("#S4").onclick = disableS4;
-document.querySelector("#S5").onclick = disableS5;
-document.querySelector("#S6").onclick = disableS6;
+document.querySelector("#S1").onclick = () => disableSFields(1);
+document.querySelector("#S2").onclick = () => disableSFields(2);
+document.querySelector("#S3").onclick = () => disableSFields(3);
+document.querySelector("#S4").onclick = () => disableSFields(4);
+document.querySelector("#S5").onclick = () => disableSFields(5);
+document.querySelector("#S6").onclick = () => disableSFields(6);
 document.querySelector("#C1").onclick = disableDiceD1;
 document.querySelector("#C2").onclick = disableDiceD2;
 document.querySelector("#C3").onclick = disableDiceD3;
@@ -54,41 +56,14 @@ function disabledDicesButtonAndCheckBoxes(){
     buttonRoll.outerHTML = "<button id = buttonRoll disabled>Roll!</button>"   
 }
 
-//Funktioner hvis der klikkes på alle s. 
-function disableS1(){
-    let sField = document.querySelector("#S1");
-    sField.outerHTML = "<input class = Yatziudfald type = number id = S1 readonly disabled>"
+//Funktion hvis der klikkes på alle s. 
+function disableSFields(S){
+    let sField = document.querySelector("#S"+S);
+    let sumField = document.querySelector("#sum");
+    sField.outerHTML = "<input class = Yatziudfald value = "+ sField.value +" type = number id = S"+S+" readonly disabled>"
     ResetDices();
-}
-
-function disableS2(){
-    let sField = document.querySelector("#S2");
-    sField.outerHTML = "<input class = Yatziudfald type = number id = S2 readonly disabled>"
-    ResetDices();
-}
-
-function disableS3(){
-    let sField = document.querySelector("#S3");
-    sField.outerHTML = "<input class = Yatziudfald type = number id = S3 readonly disabled>"
-    ResetDices();
-}
-
-function disableS4(){
-    let sField = document.querySelector("#S4");
-    sField.outerHTML = "<input class = Yatziudfald type = number id = S4 readonly disabled>"
-    ResetDices();
-}
-
-function disableS5(){
-    let sField = document.querySelector("#S5");
-    sField.outerHTML = "<input class = Yatziudfald type = number id = S5 readonly disabled>"
-    ResetDices();
-}
-
-function disableS6(){
-    let sField = document.querySelector("#S6");
-    sField.outerHTML = "<input class = Yatziudfald type = number id = S6 readonly disabled>"
-    ResetDices();
+    openSFields[S-1] = false;
+    sumToSumField();
 }
 
 //ved clik på en af S felterne, resettes terninger felter samt lock, roll knap og turn label. 
@@ -154,13 +129,19 @@ function disableDiceD5(){
 }
 
 
+//Viser resultater, på S felter. 
 function visRasultaterS(){
     for(let i = 1; i <=6;i++){
-        let S = document.querySelector("#S" + i);
-        S.value = SumS(i);   
+        if(openSFields[i-1] == true){
+            let S = document.querySelector("#S" + i);
+            valueSFields[i-1] = SumS(i);
+            S.value = valueSFields[i-1];
+        }
     }
 }
 
+
+//Udregner antal, points på S felter. 
 function SumS(S){
     amount = 0;
     for(let value of valueDice ){
@@ -169,6 +150,17 @@ function SumS(S){
         }
     }
     return amount * S;
+}
+
+function sumToSumField(){
+    let sum = 0;
+    let sumfield = document.querySelector("#Sum");
+    for(let i = 0; i < valueSFields.length; i++){
+        if(!openSFields[i]){
+            sum += valueSFields[i];  
+        }
+    }
+    sumfield.value = sum;
 }
 
 
