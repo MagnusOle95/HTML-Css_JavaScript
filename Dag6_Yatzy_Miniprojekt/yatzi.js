@@ -4,9 +4,9 @@ let openDices = new Array(5).fill(true);
 let valueDice = new Array(5).fill(0);
 let openSFields = new Array(6).fill(true);
 let valueSFields = new Array(6).fill(0);
+let valuespecialfields = new Array(9).fill(0);
 let openSpecialFields = new Array(9).fill(true);
-let valueSpecialFields = new Array(9).fill(0);
-
+let libaryForlockedspecialField = { "Onepair":"0", "Twopair":"1", "Threesame":"2", "Foursame":"3", "Fullhouse":"4", "Smallstraigt":"5", "Largestraigt":"6", "Chance":"7", "Yatzi":"8"};
 
 
 // funktion to roll dices. 
@@ -22,6 +22,15 @@ document.querySelector("#C2").onclick = disableDiceD2;
 document.querySelector("#C3").onclick = disableDiceD3;
 document.querySelector("#C4").onclick = disableDiceD4;
 document.querySelector("#C5").onclick = disableDiceD5;
+document.querySelector("#Onepair").onclick = () => disableSpecialFields("Onepair");
+document.querySelector("#Twopair").onclick = () => disableSpecialFields("Twopair");
+document.querySelector("#Threesame").onclick = () => disableSpecialFields("Threesame");
+document.querySelector("#Foursame").onclick = () => disableSpecialFields("Foursame");
+document.querySelector("#Fullhouse").onclick = () => disableSpecialFields("Fullhouse");
+document.querySelector("#Smallstraigt").onclick = () => disableSpecialFields("Smallstraigt");
+document.querySelector("#Largestraigt").onclick = () => disableSpecialFields("Largestraigt");
+document.querySelector("#Chance").onclick = () => disableSpecialFields("Chance");
+document.querySelector("#Yatzi").onclick = () => disableSpecialFields("Yatzi");
 
 
 
@@ -81,6 +90,11 @@ function disableSFields(S){
 //Funktion, hvis der klikkes på alle specialfelter. 
 function disableSpecialFields(id){
     let specialField = document.querySelector("#" + id);
+    specialField.disabled = true;
+    let location = libaryForlockedspecialField[id];
+    openSpecialFields[location] = false;
+    sumToSumField();
+    ResetDices();
 }
 
 //ved clik på en af S felterne, resettes terninger felter samt lock, roll knap og turn label. 
@@ -102,6 +116,9 @@ document.querySelector('#buttonRoll').onclick=rollDices;
 throwCount = 0;
 TurnLabel.innerHTML = "Turn: 0"
 openDices.fill(true);
+
+
+
 }
 
 //Disabler den dice der passer til checkbox, ved klick i cheach box.  
@@ -174,7 +191,6 @@ function sumToSumField(){
     let sum = 0;
     let sumfield = document.querySelector("#Sum");
     let bonusField = document.querySelector("#Bonus");
-    let totalField = document.querySelector("#Total");
     for(let i = 0; i < valueSFields.length; i++){
         if(!openSFields[i]){
             sum += valueSFields[i];  
@@ -182,7 +198,7 @@ function sumToSumField(){
     }
     sumfield.value = sum;
     bonusField.value = CheckIfYouGotBonus(sum);
-    totalField.value = total(sum);
+    total(sum);
 }
 
 function CheckIfYouGotBonus(sum){
@@ -194,7 +210,14 @@ function CheckIfYouGotBonus(sum){
 }
 
 function total(sum){
-    return sum;
+    let totalField = document.querySelector("#Total");
+    for(let i = 0; i < valuespecialfields.length; i++){
+        if(openSpecialFields[i] == false){
+            sum += valuespecialfields[i]; 
+        }
+    }
+    totalField.value = sum;
+
 }
 
 function calcCountsOFUdfald() {
@@ -211,18 +234,24 @@ function calcCountsOFUdfald() {
 
 function onePair(){
     let onePairField = document.querySelector("#Onepair");
-    let points = 0;
-    let listeMedUdfald = calcCountsOFUdfald();
-    for (let i = 1; i <= 6;i++){
-        if(listeMedUdfald[i] >= 2){
-            points = i * 2;
+    if(onePairField.disabled == false){
+
+        let points = 0;
+        let listeMedUdfald = calcCountsOFUdfald();
+        for (let i = 1; i <= 6;i++){
+            if(listeMedUdfald[i] >= 2){
+                points = i * 2;
+            }
         }
+        valuespecialfields[0] = points;
+        onePairField.value = points;   
     }
-    onePairField.value = points;
 }
 
 function twoPairs(){
     let twoPairField = document.querySelector("#Twopair");
+    if(twoPairField.disabled == false){
+
     let listeMedUdfald = calcCountsOFUdfald();
     let pairCount = 0;
     let points = 0;
@@ -237,12 +266,16 @@ function twoPairs(){
     if (pairCount != 2){
         points = 0;
     }
+    valuespecialfields[1] = points;
     twoPairField.value = points;
+    }
 }
 
 function threeSamePoints(){
-    let listeMedUdfald = calcCountsOFUdfald();
     let threeSameField = document.querySelector("#Threesame");
+    if(threeSameField.disabled == false){
+       
+        let listeMedUdfald = calcCountsOFUdfald();
     let points = 0;
 
     for (let i = 1; i <= 6;i++){
@@ -250,25 +283,33 @@ function threeSamePoints(){
             points = i * 3;
         }
     }
+    valuespecialfields[2] = points;
     threeSameField.value = points;
+    }
 }
 
 function fourSamePoints(){
-    let listeMedUdfald = calcCountsOFUdfald();
     let fourSameField = document.querySelector("#Foursame");
-    let points = 0;
+    if(fourSameField.disabled == false){
 
-    for (let i = 1; i <= 6;i++){
-        if (listeMedUdfald[i] >= 4){
+        let listeMedUdfald = calcCountsOFUdfald();
+        let points = 0;
+
+        for (let i = 1; i <= 6;i++){
+            if (listeMedUdfald[i] >= 4){
             points = i * 4;
+            }
         }
+        valuespecialfields[3] = points;
+        fourSameField.value = points;
     }
-    fourSameField.value = points;
 }
 
 function fullHousePoints(){
-    let listeMedUdfald = calcCountsOFUdfald();
     let fullHouseField = document.querySelector("#Fullhouse");
+    if(fullHouseField.disabled == false){
+        
+    let listeMedUdfald = calcCountsOFUdfald();
     let points = 0
     let threepairPoints = 0;
     let twoPairPoints = 0;
@@ -285,13 +326,17 @@ function fullHousePoints(){
     if (threepairPoints > 0 && twoPairPoints > 0){
         points = threepairPoints + twoPairPoints;
     }
+    valuespecialfields[4] = points;
     fullHouseField.value = points;
+    }
 }
 
 
 function smallStraight(){
-    let listeMedUdfald = calcCountsOFUdfald();
     let smallStraightField = document.querySelector("#Smallstraigt");
+    if(smallStraightField.disabled == false){
+
+    let listeMedUdfald = calcCountsOFUdfald();
     let points = 0
 
     for (let i = 1; i <= 5;i++){
@@ -302,12 +347,16 @@ function smallStraight(){
     if (points != 15){
         points = 0;
     }
+    valuespecialfields[5] = points;
     smallStraightField.value = points;
+    }
 }
 
 function largeStraight(){
-    let listeMedUdfald = calcCountsOFUdfald();
     let largeStraightField = document.querySelector("#Largestraigt");
+    if(largeStraightField.disabled == false){
+
+    let listeMedUdfald = calcCountsOFUdfald();
     let points = 0
 
     for (let i = 2; i <= 6;i++){
@@ -318,21 +367,28 @@ function largeStraight(){
     if (points != 20){
         points = 0;
     }
+    valuespecialfields[6] = points;
     largeStraightField.value = points;
+    }
 }
 
 function chance (){
     let chanceField = document.querySelector("#Chance");
+    if(chanceField.disabled == false){
     let points = 0
     for(let value of valueDice){
         points += value;
     }
+    valuespecialfields[7] = points;
     chanceField.value = points;
+    }
 }
 
 function yatzi(){
-    let listeMedUdfald = calcCountsOFUdfald();
     let yatziField = document.querySelector("#Yatzi");
+    if(yatziField.disabled == false){
+
+    let listeMedUdfald = calcCountsOFUdfald();
     let points = 0;
 
     for (let i = 1; i <= 6; i++){
@@ -340,7 +396,9 @@ function yatzi(){
             points = 50;
         }
     }
+    valuespecialfields[8] = points;
     yatziField.value = points;
+    }
 }
 
 
