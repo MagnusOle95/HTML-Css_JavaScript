@@ -134,7 +134,7 @@ function visRasultaterS(){
     for(let i = 1; i <=6;i++){
         if(openSFields[i-1] == true){
             let S = document.querySelector("#S" + i);
-            valueSFields[i-1] = SumS(i);
+            valueSFields[i-1] = SumS(i) + 10;
             S.value = valueSFields[i-1];
         }
     }
@@ -152,16 +152,29 @@ function SumS(S){
     return amount * S;
 }
 
+//Ligger, værdien af s feltet ind i sum feltet. 
 function sumToSumField(){
     let sum = 0;
     let sumfield = document.querySelector("#Sum");
+    let bonusField = document.querySelector("#Bonus");
     for(let i = 0; i < valueSFields.length; i++){
         if(!openSFields[i]){
             sum += valueSFields[i];  
         }
     }
     sumfield.value = sum;
+    bonusField.value = CheckIfYouGotBonus(sum);
 }
+
+function CheckIfYouGotBonus(sum){
+    bonus = 0;
+    if (sum >= 63){
+        bonus = 50;
+    }
+    return bonus;
+}
+
+
 
 
 
