@@ -57,13 +57,20 @@ getMobilNumber =(p) => p.mobilNummer;
 getName = (P) => P.name;
 let arrayMedFolkOver30 = [];
 
-for(let i = 0; i < personer.length; i++){
-    if(getAge(personer[i]) < 30){
-        let name = getName(personer[i]);
-        let mobilnummer = getMobilNumber(personer[i]);
-        arrayMedFolkOver30.push(name + " " + mobilnummer);
+personer.forEach(P => {
+    if(getAge(P) <30){
+        arrayMedFolkOver30.push(getName(P) + " " + getMobilNumber(P));
     }
-}
+})
+
+// for(let i = 0; i < personer.length; i++){
+//     if(getAge(personer[i]) < 30){
+//         let name = getName(personer[i]);
+//         let mobilnummer = getMobilNumber(personer[i]);
+//         arrayMedFolkOver30.push(name + " " + mobilnummer);
+//     }
+// }
+
 console.log(arrayMedFolkOver30);
 
 
