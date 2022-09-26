@@ -39,8 +39,33 @@ personer.reduce((id, person) => {
 ,5
 )
 personer.forEach(p => console.log(p));
+console.log("\n");
 
 //Opgave 8.1 Generer en tekststreng, der indeholder personernes navne, kommasepareret og i sorteret rækkefølge. 
+personer.sort((a,b) => a.name.localeCompare(b.name));
+personer.forEach(p => console.log(p));
+console.log();
+
+let navne = " ";
+personer.forEach(p => navne += p.name + ", ");
+console.log(navne);
+
+
+//Opgave 8.1 laver et array med navne og mobilnummer på de personer der er under 30 år.
+getAge = (P) => P.alder;
+getMobilNumber =(p) => p.mobilNummer;
+getName = (P) => P.name;
+let arrayMedFolkOver30 = [];
+
+for(let i = 0; i < personer.length; i++){
+    if(getAge(personer[i]) < 30){
+        let name = getName(personer[i]);
+        let mobilnummer = getMobilNumber(personer[i]);
+        arrayMedFolkOver30.push(name + " " + mobilnummer);
+    }
+}
+console.log(arrayMedFolkOver30);
+
 
 
 
