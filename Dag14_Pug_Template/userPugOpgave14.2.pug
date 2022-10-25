@@ -1,0 +1,16 @@
+body 
+    h1 Opgave14.2
+    p 
+        |Personer i listen: 
+        table(border = '1')
+            -
+            each user in usersArray
+                tr 
+                    td Navn: #{user.name}
+                    td Alder: #{user.age}
+                    td Adresse: #{user.adresse}
+
+
+
+
+

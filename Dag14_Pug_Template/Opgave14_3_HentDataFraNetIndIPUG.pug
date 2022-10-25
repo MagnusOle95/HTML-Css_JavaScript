@@ -1,0 +1,18 @@
+body 
+    h1 Opgave14.3
+    p 
+        |Personer i listen: 
+        table(border = '1')
+            -
+            each user in usersArray
+                tr 
+                    td Navn: #{user.name.title} #{user.name.first} #{user.name.last}
+                    td Køn: #{user.gender}
+                    td Lokation: Land: #{user.location.country} By: #{user.location.city} Område #{user.location.state} adresse: #{user.location.street.name} #{user.location.street.number} 
+                    td Email: #{user.email}
+                    td Login: Brugernavn: #{user.login.username} Password: #{user.login.password}
+
+
+
+
+
