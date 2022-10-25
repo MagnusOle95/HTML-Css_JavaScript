@@ -1,4 +1,4 @@
-const url = "https://randomuser.me/api/?nat=dk&results=100"
+const url = "https://randomuser.me/api/?nat=ru&results=100"
 //Express server er, eksempel fra opgave 13.2
 
 // userServer.js
@@ -23,11 +23,12 @@ async function get(url) {
 app.get ('/',async (request, response) => {
     let users = await get(url);
     console.log(users);
-    let valueForTemplate = {name: "Array", usersArray: users.results};
+    let valueForTemplate = {name: "Array", usersArray: users.results, antal: 0};
     //console.log(pug.renderFile(path.join(__dirname, '/Opgave14_3_HentDataFraNetIndIPUG'),valueForTemplate));
     response.render('Opgave14_4_ArbejdVidereMEdOpgave14_3PUG',valueForTemplate);   
 }
 );
+
 app.listen(port);
 console.log('Lytter på port ' + port + ' ...');
 
