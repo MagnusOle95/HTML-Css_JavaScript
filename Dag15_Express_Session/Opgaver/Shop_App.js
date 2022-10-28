@@ -12,6 +12,11 @@ const { response } = require('express');
 app.set('view engine','pug');
 app.set('views',path.join(__dirname, '/'));
 
+const sessions = require('express-session');
+app.use(sessions({ secret: 'hemmelig', saveUninitialized: true, cookie: { maxAge: 1000*60*20 }, resave: false }));
+//app.use(express.static(__dirname + '/filer'));
+app.use(express.json());
+
 //Opretter liste af produkter. 
 let produkter = [];
 produkter.push({produktName: "Mælk", pris: 12, antal: 70, id: 0});
@@ -26,13 +31,19 @@ let valueForTemplate = {name: "Array", produktArray: produkter};
 //Metoder ved kald.
 let placeholder;
 app.get('/index',(request, response) => { 
+    let produktId = request.session.produktId;
+    valueForTemplate.produktId = produktId;
     response.render('Shop_index.pug',valueForTemplate);
     }
 );
 
 app.post('/buy',(request, response) => {
-    console.log(request);
+    const {id} = request.body;
+    console.log(id);
+    request.session.produktId = id;
+    response.sendStatus(201);
 })
+
 
 
 app.listen(port);

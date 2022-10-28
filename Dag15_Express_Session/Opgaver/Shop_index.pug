@@ -11,12 +11,13 @@ script.
     throw new Error(respons.status);
     return await respons.text();
     }
+
     let clickfunction = async (id) => {
-    try {
-        alert(id);
-        await post ("http://localhost:8080/buy");
-    }catch(e){
-        alert("Fejl");
+        try {
+        await post ("http://localhost:8080/buy", {id: id});
+        window.location.href = "http://localhost:8080/index"
+        }catch(e){
+        alert(e);
         }
     }
 
@@ -32,6 +33,8 @@ body
                     td Antal på lager: #{produkt.antal}
                     td 
                         button(onclick='clickfunction("' + produkt.id + '")') lig i kurv
+    h2 indkøbsliste.
+    p=produktId
 
 
 
