@@ -1,0 +1,38 @@
+script.
+    async function post(url, objekt) {
+    const respons = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(objekt),
+    headers: {
+    'Content-Type': 'application/json'
+    }
+    });
+    if (respons.status !== 201) // Created
+    throw new Error(respons.status);
+    return await respons.text();
+    }
+    let clickfunction = async (id) => {
+    try {
+        alert(id);
+        await post ("http://localhost:8080/buy");
+    }catch(e){
+        alert("Fejl");
+        }
+    }
+
+body 
+    h1 Opgave 15_Shop.
+    p 
+        table(border = '1')
+            -
+            each produkt in produktArray
+                tr 
+                    td Navn: #{produkt.produktName}
+                    td Pris: #{produkt.pris}
+                    td Antal på lager: #{produkt.antal}
+                    td 
+                        button(onclick='clickfunction("' + produkt.id + '")') lig i kurv
+
+
+
+
