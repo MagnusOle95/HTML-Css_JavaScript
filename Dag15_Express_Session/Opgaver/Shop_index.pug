@@ -34,7 +34,14 @@ body
                     td 
                         button(onclick='clickfunction("' + produkt.id + '")') lig i kurv
     h2 indkøbsliste.
-    p=produktId
+    //p=produktId
+    table(border = '1')
+        -
+        each p in indkøbsListe
+                tr 
+                    td #{p.antal}
+                    //td #{p.}
+
 
 
 

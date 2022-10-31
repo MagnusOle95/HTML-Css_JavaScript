@@ -25,14 +25,17 @@ produkter.push({produktName: "Majs", pris: 6, antal: 52, id: 2});
 produkter.push({produktName: "Dåsetun", pris: 15, antal: 100, id: 3});
 produkter.push({produktName: "Pose kaffe", pris: 49.95, antal: 32, id: 4});
 
+//Opretter indkøbsliste. 
+let indkøbsListeArray = []; 
+
 //Laver objekt der skal sendes med. 
-let valueForTemplate = {name: "Array", produktArray: produkter};
+let valueForTemplate = {name: "Array", produktArray: produkter, indkøbsListe: indkøbsListeArray};
 
 //Metoder ved kald.
 let placeholder;
 app.get('/index',(request, response) => { 
-    let produktId = request.session.produktId;
-    valueForTemplate.produktId = produktId;
+    //let produktId = request.session.produktId;
+    //valueForTemplate.produktId = produktId;
     response.render('Shop_index.pug',valueForTemplate);
     }
 );
@@ -40,7 +43,12 @@ app.get('/index',(request, response) => {
 app.post('/buy',(request, response) => {
     const {id} = request.body;
     console.log(id);
-    request.session.produktId = id;
+    //request.session.produktId = id;
+    if (indkøbsListeArray.includes(ProduktObjekt : produkter[id])){
+        //do nothing. 
+    }else{
+        indkøbsListeArray.push({ProduktObjekt: produkter[id], antal : 1});  
+    }
     response.sendStatus(201);
 })
 
@@ -48,3 +56,7 @@ app.post('/buy',(request, response) => {
 
 app.listen(port);
 console.log("Køre og bruger port: " + port);
+
+
+
+
