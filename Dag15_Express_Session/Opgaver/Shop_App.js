@@ -44,10 +44,10 @@ app.post('/buy',(request, response) => {
     const {id} = request.body;
     console.log(id);
     //request.session.produktId = id;
-    if (indkøbsListeArray.includes(ProduktObjekt : produkter[id])){
+    if (indkøbsListeArray.includes(produkter[id])){
         //do nothing. 
     }else{
-        indkøbsListeArray.push({ProduktObjekt: produkter[id], antal : 1});  
+        indkøbsListeArray.push(produkter[id]);  
     }
     response.sendStatus(201);
 })
