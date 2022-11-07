@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UFT-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <h1>Alle rum</h1>
+        <div>
+          <% for(let i = 0; i < Chatrums.length; i++) { %>
+            <input type = "button" value = <%= Chatrums[i].navn %>>
+          <% } %>
+          </div>
+          
+      </main>
+
+    <br/>
+    <label>Tekst:</label> <input type="text" id = 'tekst'>
+    <label>Chatrum:</label> <input type="text" id = 'chatrum'>
+    <input type="Button" value="Opret" onclick="opretBesked()">
+</body>
+
+</html>

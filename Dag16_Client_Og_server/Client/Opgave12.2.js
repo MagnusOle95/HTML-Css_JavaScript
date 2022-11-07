@@ -103,7 +103,7 @@ async function visBeskederFor(rum) {
     table.setAttribute("border", "solid");
     createRow(table, 'id', 'Tekst', 'Chatrum');
     for (let besked of beskeder) {
-        createRow(table, besked.id, besked.tekst, besked.chatRum);
+        createRow(table, besked.id, besked.tekst, besked.chatrum);
     }
     beskedDiv.appendChild(table);
 }
