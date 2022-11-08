@@ -1,0 +1,36 @@
+
+script.
+
+    //- let clickfunction = async (rumNavn) => {
+    //-     console.log(rumNavn)
+    //-     //- try {
+    //-     //- await post ("http://localhost:8080/buy", {id: id});
+    //-     //- window.location.href = "http://localhost:8080/index"
+    //-     //- }catch(e){
+    //-     //- alert(e);
+    //-     //- }
+    //- }
+
+    let clickfunction = async (rumNavn) => {
+        console.log(rumNavn)
+        window.location.href = "http://localhost:9000/" + rumNavn;
+    }
+
+
+
+body 
+    h1 Opgave 15_Shop.
+    p
+        each cr in chatRooms
+            tr
+                td
+                    button(onclick='clickfunction("' + cr.navn + '")') #{cr.navn}
+    h2 Beskeder i Rummet:
+    table(border = '1')
+        - 
+        each mes in messeges
+            tr
+                td #{mes.afsender}
+                td #{mes.tekst}
+                
+
