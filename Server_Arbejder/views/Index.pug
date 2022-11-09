@@ -1,0 +1,88 @@
+
+script.
+
+    //Post metode til funktion. 
+    async function post(url, objekt) {
+    const respons = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(objekt),
+    headers: {
+    'Content-Type': 'application/json'
+    }
+    });
+    if (respons.status !== 201) // Created
+    throw new Error(respons.status);
+    return await respons.text();
+    }
+
+    let clickfunction = async (rumNavn) => {
+        console.log(rumNavn)
+         try {
+        await post("http://localhost:9000/beskeder", {rumNavn: rumNavn});
+        window.location.href = "http://localhost:9000/"
+        }catch(e){
+        console.log("Fejl");
+        }
+    }
+
+    let opretBesked = async () => {
+        var textFromUser = document.getElementById("textFromUser").value;
+        var OensketRum = document.getElementById("OensketRum").value;
+        var userName = document.getElementById("userName").value;
+        try {
+        await post("http://localhost:9000/opretbesked", {textFromUser: textFromUser,userName: userName, OensketRum: OensketRum});
+        window.location.href = "http://localhost:9000/"
+        }catch(e){
+        console.log("Fejl");
+        } 
+    }
+
+    let sletBesked = async (beskedId) => {
+        try {
+        await post("http://localhost:9000/sletBesked", {beskedId: beskedId});
+        window.location.href = "http://localhost:9000/"
+        }catch(e){
+        console.log("Fejl");
+        } 
+    }
+
+
+
+
+
+body 
+    h1 Chatsystem. 
+    p
+        each cr in chatRooms
+            tr
+                td
+                    button(onclick='clickfunction("' + cr.navn + '")') #{cr.navn}
+    
+    h2 Beskeder i Rummet:
+    table(border = '1')
+        - 
+        each mes in messeges
+            tr
+                td #{mes.beskedNr}
+                td #{mes.afSender}
+                td #{mes.tekst}
+                td
+                    button(onclick='sletBesked("' + mes.beskedNr + '")') slet
+
+    p   
+        label skriv tekst
+        br
+        input(type='text' id='textFromUser')
+        br
+        label Navn på afsender
+        br
+        input(type='text' id='userName')
+        br
+        label Rum der ønskes at skrive i
+        br
+        input(type='text' value = "Rum" id='OensketRum')
+        br
+        button(onclick='opretBesked()') post besked i rummet
+        
+        
+        

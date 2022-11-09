@@ -58,6 +58,7 @@ app.get('/beskeder', (request, response) => {
     response.status(200);
     response.send(beskeder);
 });
+
 app.get('/beskeder/:chatrum', (request, response) => {
     response.status(200);
     let result = [];
