@@ -54,11 +54,13 @@ app.post('/opretbesked', (request, response) => {
 
 app.post('/sletBesked', (request, response) => {
     const { beskedId } = request.body;
-    console.log(beskedId)
-    console.log(beskeder)
-    beskeder.splice(beskedId - 1, 1)
-    console.log(beskeder)
-    response.sendStatus(201);
+    let index = beskeder.findIndex(object => {
+        return object.beskedNr == beskedId;
+      });
+      beskeder.splice(index, 1);
+
+    console.log(index)
+    response.sendStatus(201)
 
 })
 
