@@ -1,5 +1,8 @@
 
 script.
+    //attributer 
+    let aktuelRum
+
 
     //Post metode til funktion. 
     async function post(url, objekt) {
@@ -23,6 +26,7 @@ script.
         }catch(e){
         console.log("Fejl");
         }
+        aktuelRum = rumNavn; 
     }
 
     let opretBesked = async () => {
@@ -35,6 +39,7 @@ script.
         }catch(e){
         console.log("Fejl");
         } 
+        clickfunction(aktuelRum);
     }
 
     let sletBesked = async (beskedId) => {
@@ -44,9 +49,8 @@ script.
         }catch(e){
         console.log("Fejl");
         } 
+        clickfunction(aktuelRum);
     }
-
-
 
 
 
@@ -67,7 +71,7 @@ body
                 td #{mes.afSender}
                 td #{mes.tekst}
                 td
-                    button(onclick='sletBesked("' + mes.beskedNr + '")') slet
+                    label(onclick='sletBesked("' + mes.beskedNr + '")') slet
 
     p   
         label skriv tekst

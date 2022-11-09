@@ -58,7 +58,7 @@ app.post('/sletBesked', (request, response) => {
         return object.beskedNr == beskedId;
       });
       beskeder.splice(index, 1);
-
+      
     console.log(index)
     response.sendStatus(201)
 
