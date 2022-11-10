@@ -1,20 +1,43 @@
 //laver express server. 
 const port = 9000;
-const express = require('express');
+import express from 'express'; //Ændret til import. ved brug af firebase
 const app = express();
 
 //Opretter view. 
-let pug = require('pug');
-let path = require('path');
-const { request } = require('http');
-const { response } = require('express');
+let pug = import('pug');
+let path = import('path');
+const { request } = import('http');
+const { response } = import('express');
 app.set('view engine','pug');
 app.set('views',path.join(__dirname, '/views'));
 
-const sessions = require('express-session');
+const sessions = import('express-session');
 app.use(sessions({ secret: 'hemmelig', saveUninitialized: true, cookie: { maxAge: 1000*60*20 }, resave: false }));
 //app.use(express.static(__dirname + '/filer'));
 app.use(express.json());
+
+//Firebase filer. 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCupa_D6i-6OvDBJ2pKXgl5FvqPrGVf-O0",
+  authDomain: "chatsystem-21fea.firebaseapp.com",
+  projectId: "chatsystem-21fea",
+  storageBucket: "chatsystem-21fea.appspot.com",
+  messagingSenderId: "279801090265",
+  appId: "1:279801090265:web:6c13566a4208fb95ddeec8",
+  measurementId: "G-9Y2MLVWWL1"
+};
+
+// Initialize Firebase
+const appFireBase = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 
 //Besked liste 
