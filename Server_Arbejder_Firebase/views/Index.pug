@@ -67,11 +67,11 @@ body
         - 
         each mes in messeges
             tr
-                td #{mes.beskedNr}
+                //td #{mes.beskedId}
                 td #{mes.afSender}
                 td #{mes.tekst}
                 td
-                    label(onclick='sletBesked("' + mes.beskedNr + '")') slet
+                    label(onclick='sletBesked("' + mes.beskedId + '")') slet
 
     p   
         label skriv tekst

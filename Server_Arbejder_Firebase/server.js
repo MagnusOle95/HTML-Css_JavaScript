@@ -57,35 +57,31 @@ app.get("/",(request,response) =>{
 app.post('/beskeder',async (request, response) => {
     let messageCol=collection(db, 'beskeder');
     let messages = await getDocs(messageCol);
-    console.log(messages.docs[1])
+    console.log(messages.docs)
 
     beskederForRum.length = 0;
     const { rumNavn } = request.body;
     for (let b of messages.docs){
         let besked = b._document.data.value.mapValue.fields
         if (besked.chatrum.stringValue == rumNavn){
-            beskederForRum.push({afSender: besked.afsender.stringValue, tekst: besked.tekst.stringValue, beskedNr: besked.beskedNr.integerValue})
+            beskederForRum.push({afSender: besked.afsender.stringValue, tekst: besked.tekst.stringValue, beskedId: b.id})
         }
     }
     response.sendStatus(201);
 })
 
 
-app.post('/opretbesked', (request, response) => {
+app.post('/opretbesked',async (request, response) => {
     const { textFromUser, userName, OensketRum } = request.body;
-    beskeder.push({ afsender: userName, tekst: textFromUser, chatrum: OensketRum, beskedNr: beskedNrCount})
+    let nyBesked = {afsender: userName, tekst: textFromUser, chatrum: OensketRum}
+    addDoc(collection(db,'beskeder'), nyBesked)
     beskedNrCount++;
     response.sendStatus(201);
 })
 
-app.post('/sletBesked', (request, response) => {
+app.post('/sletBesked',async (request, response) => {
     const { beskedId } = request.body;
-    let index = beskeder.findIndex(object => {
-        return object.beskedNr == beskedId;
-      });
-      beskeder.splice(index, 1);
-      
-    console.log(index)
+    await deleteDoc(doc(db, 'beskeder', beskedId));
     response.sendStatus(201)
 
 })
