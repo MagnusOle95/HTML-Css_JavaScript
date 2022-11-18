@@ -6,8 +6,7 @@
     "express-session": "^1.17.3",
     "firebase": "^9.13.0",
     "node-fetch": "^2.6.6",
-    "pug": "^3.0.2",
-    "signature_pad": "^4.1.4"
+    "pug": "^3.0.2"
   },
   "name": "html-css_javascript",
   "version": "1.0.0",
@@ -26,5 +25,6 @@
     "url": "https://github.com/Oleand1995/HTML-Css_JavaScript/issues"
   },
   "homepage": "https://github.com/Oleand1995/HTML-Css_JavaScript#readme",
+  "devDependencies": {},
   "description": ""
 }
