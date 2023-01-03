@@ -3,7 +3,7 @@ const app = express();
 const session = require('express-session');
 
 app.set('view engine', 'pug');
-app.set('views', 'C:/HTML-Css_JavaScript-1/Dag25_Rep/spm4');
+app.set('views', 'C:/HTML-Css_JavaScript-1/Dag25_Rep/spm5');
 
 app.use(express.static('filer'));
 app.use(express.json());
