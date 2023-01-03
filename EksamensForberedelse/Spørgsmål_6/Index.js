@@ -1,40 +1,34 @@
+
 const quotes = 'https://www.tronalddump.io/random/quote'
-const tagquotes = 'https://www.tronalddump.io/tag/John%20Kasich'
+const tagquotes = 'https://www.tronalddump.io/tag/'
 
 async function getrandomQuotes(url) {
             try {
             let respons = await get(url);
-            console.log(respons);
             let tag = respons.tags[0];
-            console.log(tag)
             let OuterDiv = document.querySelector("#result");
-            OuterDiv.innerHTML = "<div> <a onclick = getTagQuotes('"+tag+"')>Tag: # " + tag + " </a> </div>"
-            OuterDiv.innerHTML = OuterDiv.innerHTML + "<div>" + " Tekst: " + respons.value + "</div>" 
+            OuterDiv.innerHTML = "<div id=demo onclick=myFunction()>" + tag + "</div>"
+            OuterDiv.innerHTML = OuterDiv.innerHTML + "<div>" + respons.value + "</div>" 
+            OuterDiv.innerHTML = OuterDiv.innerHTML + "<button onclick=getrandomQuotes("+quotes+")>New quote</button>"
             } catch (fejl) {
             console.log(fejl);
             } 
         
 }
 
-async function getTagQuotes(test){
+async function myFunction() {
+    let tag = document.getElementById("demo").textContent;
+    let splitTag = tag.split(" ");
     try {
-        
-        console.log(test);
-        
+        let respons = await get(tagquotes + splitTag[0] + "%20" + splitTag[1]);
+        console.log(respons);
+        // let OuterDiv = document.querySelector("#result");
+        // OuterDiv.innerHTML = "<div> <label onclick = test()>Tag: #" + respons.tags + "</label> </div>"
+        // OuterDiv.innerHTML = OuterDiv.innerHTML + "<div>" + " Tekst: " + respons.value + "</div>" 
         } catch (fejl) {
         console.log(fejl);
         } 
-    // try {
-    //     let respons = await get(tagquotes);
-    //     console.log(respons);
-    //     // let OuterDiv = document.querySelector("#result");
-    //     // OuterDiv.innerHTML = "<div> <label onclick = test()>Tag: #" + respons.tags + "</label> </div>"
-    //     // OuterDiv.innerHTML = OuterDiv.innerHTML + "<div>" + " Tekst: " + respons.value + "</div>" 
-    //     } catch (fejl) {
-    //     console.log(fejl);
-    //     } 
-}
-
+  }
 
 //Funktioner. 
 async function get(url) {
@@ -57,6 +51,9 @@ async function post(url, objekt) {
 
 //Køre funktionen. 
 getrandomQuotes(quotes);
+
+
+
 
 
 
