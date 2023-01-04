@@ -1,6 +1,6 @@
 const quotes = 'https://www.tronalddump.io/random/quote'
 
-async function getrandomQuotes(url,antal) {
+function getrandomQuotes(url,antal) {
     let promishArray = [];
     for (let i = 0; i < antal; i++) {
         let respons = get(url);
@@ -21,7 +21,7 @@ async function getrandomQuotes(url,antal) {
         });
 }
 
-async function getrandomQuotesButton(){
+function getrandomQuotesButton(){
     let textDiv = document.querySelector("#Text");
     textDiv.innerHTML = ""
     let antal = document.querySelector("#antal")
