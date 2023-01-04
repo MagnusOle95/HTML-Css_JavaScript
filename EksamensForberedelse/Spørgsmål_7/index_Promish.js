@@ -17,7 +17,7 @@ async function getrandomQuotes(url,antal) {
             }
         })
         .catch((error) => {
-            te.innerHTML = "<div> Fejl </div>"
+            textDiv.innerHTML = "<div> Fejl </div>"
         });
 }
 

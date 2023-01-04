@@ -14,7 +14,7 @@ personer.push(person3);
 personer.push(person4);
 personer.push(person5);
 
-//Opgave 8.1 - Find person med bestemt mobil nummr. 
+//Find person med bestemt mobil nummr. 
 PersonMedNummer = (person) => person.mobilNummer == "28715538";
 result = personer.find(PersonMedNummer);
 console.log(result);
