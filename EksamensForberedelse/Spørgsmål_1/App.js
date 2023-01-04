@@ -55,6 +55,7 @@ function beregnMinVægt (VægtMin,P){
 let mindstevægt = biler.reduce(beregnMinVægt,biler[0].vægt)
 console.log(mindstevægt);
 
+
 //Laver et array med biler der har størst antal hjul. 
 let getAntalHjul2 = (P) => P.antalhjul;
 let maxHjul = 0;
@@ -67,4 +68,21 @@ console.log(maxHjul);
 let bilerMedStørsteantalHjul = biler.filter(p => p.antalhjul == maxHjul);
 console.log(bilerMedStørsteantalHjul);
 
+
+//laver metode der giver antal hjul og antal bil. 
+let antalhjulArray = [];
+biler.forEach(element => {
+    if(antalhjulArray[element.antalhjul] == undefined){
+        antalhjulArray[element.antalhjul] = 1;
+    }
+    else{
+        antalhjulArray[element.antalhjul]++;  
+    }
+});
+
+console.log(antalhjulArray);
+
+
 let stop = 0; //Husk breakpoint så man kan se data fra funktionerne. 
+
+

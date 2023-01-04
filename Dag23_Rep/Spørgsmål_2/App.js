@@ -26,12 +26,13 @@ class bil {
   class varevogn extends bil {
     #lasteEvne;
     constructor(bilmaerke, pris, lasteEvne) {
+        
         try{
+            super(bilmaerke, pris);
             if(lasteEvne == undefined){
                 throw ("varevogn oprettes ikke da, da lasteevne skal være intastet")   
             }
             else{ 
-            super(bilmaerke, pris);  
             this.#lasteEvne = lasteEvne; 
             }  
         }
@@ -53,7 +54,7 @@ class bil {
   console.log(varevognOpel)
 
 
-  //Tilføjer både vil og varevogn, i en liste. 
+  //Tilføjer både bil og varevogn, i en liste. 
   let listeAfBiler = [];
   listeAfBiler.push(bilKia);
   listeAfBiler.push(varevognOpel);
@@ -67,8 +68,15 @@ class bil {
 
   //Tester exception på bil. 
   let testbil = new bil();
-  let testvarevogn = new varevogn();
+  let testvarevogn = new varevogn("test",500,);//ting til superklassen skal være udfyldt. men her tester jeg uden lasteevne.  
+  console.log(listeAfBiler)
 
+  let stop = 0;
+
+  //Gør rede for arv. 
+  // A subclass is a class that derives from another class. 
+  // A subclass inherits state and behavior from all of its ancestors. 
+  // The term superclass refers to a class's direct ancestor as well as all of its ascendant classes.
 
 
 
